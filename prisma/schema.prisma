@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -11,40 +8,54 @@ datasource db {
 }
 
 model Aluno {
-  matricula Int    @id
-  nome      String
-  nota      Float
-  grupo     Grupo? @relation(fields: [grupoId], references: [id])
-  grupoId   Int?
+  id_aluno        String   @id @default(uuid())
+  nome_aluno      String   @relation(fields: [id_grupo], references: [id__aluno])
+  matricula_aluno Int      @unique
+  id_grupo        Int
+  email_aluno     String   @unique
+  curso_aluno     String
+  nota_aluno      Float
+  created_at      DateTime @default(now())
+  updated_at      DateTime @default(now())
 }
 
 model Professor {
-  matricula Int    @id
-  nome      String
+  id_prof    Int      @id
+  nome_prof  String
+  email_prof String   @unique
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
 }
 
 model Grupo {
-  id     Int     @id
-  nome   String
-  nota   Float
-  alunos Aluno[]
+  id_grp      Int      @id
+  lider_grupo String
+  nome_grp    String
+  id_aluno    Int
+  alunos      Aluno[]
+  nota_grp    Float
+  created_at  DateTime @default(now())
+  updated_at  DateTime @default(now())
 }
 
 model Estande {
-  id       Int @id
-  id_grupo Int
-}
-
-model Avaliacao_Aluno {
-  id       Int      @id
-  id_aluno Int
-  nota     Float
-  data     DateTime
+  numero_estande Int      @id
+  created_at     DateTime @default(now())
+  updated_at     DateTime @default(now())
 }
 
 model Avaliacao_Professor {
-  id           Int      @id
-  id_professor Int
-  nota         Float
-  data         DateTime
+  id_avaliacao_prof Int      @id
+  nota_ava_prof     Float
+  horario           DateTime
+  created_at        DateTime @default(now())
+  updated_at        DateTime @default(now())
+}
+
+model Avaliacao_Aluno {
+  id_avaliacao_aluno Int      @id
+  nota_ava_aluno     Float
+  horario            DateTime
+  created_at         DateTime @default(now())
+  updated_at         DateTime @default(now())
 }
