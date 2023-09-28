@@ -30,17 +30,21 @@ app.get('/professor', (req, res) => __awaiter(void 0, void 0, void 0, function* 
     const professor = yield prisma.professor.findMany();
     res.json(professor);
 }));
+app.get('/grupo', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const grupo = yield prisma.grupo.findMany();
+    res.json(grupo);
+}));
 app.get('/estande', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const estande = yield prisma.estande.findMany();
     res.json(estande);
 }));
-app.get('/avaliacaoprofessor', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const avaliacaoprofessor = yield prisma.avaliacao_Professor.findMany();
-    res.json(avaliacaoprofessor);
+app.get('/avaliacao', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const avaliacao = yield prisma.avaliacao.findMany();
+    res.json(avaliacao);
 }));
-app.get('/avaliacaoaluno', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const avaliacaoaluno = yield prisma.avaliacao_Aluno.findMany();
-    res.json(avaliacaoaluno);
+app.get('/criterios', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const criterios = yield prisma.criterios.findMany();
+    res.json(criterios);
 }));
 if (process.env.PORT) {
     app.listen(process.env.PORT, () => {

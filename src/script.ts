@@ -1,17 +1,19 @@
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient, Aluno, Professor, Grupo, Avaliacao, Estande, Criterios } from '@prisma/client';
 
-const prisma = new PrismaClient()
+const prisma = new PrismaClient();
 
-async function main() {
-  // ... you will write your Prisma Client queries here
+class main {
+  constructor() {}
+
+  async criar(newDado: Aluno, nome_aluno: String) {
+    try {
+      const criar = await prisma.aluno.create({
+        data: newDado
+
+      });
+      return criar;
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
-
-main()
-  .then(async () => {
-    await prisma.$disconnect()
-  })
-  .catch(async (e) => {
-    console.error(e)
-    await prisma.$disconnect()
-    process.exit(1)
-  })

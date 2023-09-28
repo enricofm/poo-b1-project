@@ -11,17 +11,19 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const client_1 = require("@prisma/client");
 const prisma = new client_1.PrismaClient();
-function main() {
-    return __awaiter(this, void 0, void 0, function* () {
-        // ... you will write your Prisma Client queries here
-    });
+class main {
+    constructor() { }
+    criar(newDado) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const criar = yield prisma.aluno.create({
+                    data: newDado,
+                });
+                return criar;
+            }
+            catch (error) {
+                console.log(error);
+            }
+        });
+    }
 }
-main()
-    .then(() => __awaiter(void 0, void 0, void 0, function* () {
-    yield prisma.$disconnect();
-}))
-    .catch((e) => __awaiter(void 0, void 0, void 0, function* () {
-    console.error(e);
-    yield prisma.$disconnect();
-    process.exit(1);
-}));
