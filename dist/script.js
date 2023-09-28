@@ -13,11 +13,11 @@ const client_1 = require("@prisma/client");
 const prisma = new client_1.PrismaClient();
 class main {
     constructor() { }
-    criar(newDado) {
+    criar(newDado, nome_aluno) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const criar = yield prisma.aluno.create({
-                    data: newDado,
+                    data: newDado
                 });
                 return criar;
             }
