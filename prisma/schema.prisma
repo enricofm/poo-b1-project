@@ -72,7 +72,7 @@ model Avaliacao {
   id_avaliacao String    @id @default(uuid())
   professor    Professor @relation("Avaliação do Professor", fields: [id_prof], references: [id_prof])
   id_prof      String
-  aluno        Aluno?     @relation("Avaliação do Aluno", fields: [id_aluno], references: [id_aluno])
+  aluno        Aluno?    @relation("Avaliação do Aluno", fields: [id_aluno], references: [id_aluno])
   id_aluno     String
   nota_total   Criterios @relation("Nota", fields: [id_nota], references: [id_crit])
   id_nota      String
