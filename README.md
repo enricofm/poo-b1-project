@@ -1,6 +1,6 @@
 # Projeto Prático do Primeiro Bimestre - POO II
 ## Alunos:
-### Lorenzo Venturini
-### Caio Ramalho
-### Enrico Modena
-### Gabriel Thomazi
+### Lorenzo Venturini @LorenzoVA
+### Caio Ramalho      @RamalhoCaio
+### Enrico Modena     @enricofm
+### Gabriel Thomazi   @thomazi
