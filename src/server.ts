@@ -22,19 +22,24 @@ app.get('/professor', async (req: Request, res: Response) => {
   res.json(professor);
 });
 
+app.get('/grupo', async (req: Request, res: Response) => {
+  const grupo = await prisma.grupo.findMany();
+  res.json(grupo);
+});
+
 app.get('/estande', async (req: Request, res: Response) => {
   const estande = await prisma.estande.findMany();
   res.json(estande);
 });
 
-app.get('/avaliacaoprofessor', async (req: Request, res: Response) => {
-  const avaliacaoprofessor = await prisma.avaliacao_Professor.findMany();
-  res.json(avaliacaoprofessor);
+app.get('/avaliacao', async (req: Request, res: Response) => {
+  const avaliacao = await prisma.avaliacao.findMany();
+  res.json(avaliacao);
 });
 
-app.get('/avaliacaoaluno', async (req: Request, res: Response) => {
-  const avaliacaoaluno = await prisma.avaliacao_Aluno.findMany();
-  res.json(avaliacaoaluno);
+app.get('/criterios', async (req: Request, res: Response) => {
+  const criterios = await prisma.criterios.findMany();
+  res.json(criterios);
 });
 
 if (process.env.PORT) {

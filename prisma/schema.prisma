@@ -7,22 +7,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
-  posts Post[]
-}
-
-model Post {
-  id        Int     @id @default(autoincrement())
-  title     String
-  content   String?
-  published Boolean @default(false)
-  author    User    @relation(fields: [authorId], references: [id])
-  authorId  Int
-}
-
 model Aluno {
   id_aluno         String      @id @default(uuid())
   nome_aluno       String
@@ -89,14 +73,6 @@ model Criterios {
   atratividade Float
   apresentacao Float
   nota_total   Avaliacao[] @relation("Nota")
+  created_at   DateTime    @default(now())
+  updated_at   DateTime    @default(now())
 }
-
-//model Avaliacao_Aluno {
-//id_avaliacao_aluno String   @id @default(uuid())
-//nota_ava_aluno     Float
-//aluno              Aluno    @relation("Avaliação do Aluno", fields: [id_aluno], references: [id_aluno])
-//id_aluno           String
-//horario            DateTime
-//created_at         DateTime @default(now())
-//updated_at         DateTime @default(now())
-//}
