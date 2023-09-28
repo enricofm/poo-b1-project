@@ -3,4 +3,4 @@
 ### Lorenzo Venturini @LorenzoVA
 ### Caio Ramalho      @RamalhoCaio
 ### Enrico Modena     @enricofm
-### Gabriel Thomazi   @thomazi
+### Gabriel Thomazi   @Thomazi
