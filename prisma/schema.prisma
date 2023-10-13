@@ -1,0 +1,78 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Aluno {
+  id_aluno         String      @id @default(uuid())
+  nome_aluno       String
+  matricula_aluno  Int         @unique
+  email_aluno      String      @unique
+  curso_aluno      String
+  grupo_lider      Grupo?      @relation("Liderança")
+  grupo_aluno      Grupo       @relation("Membros", fields: [id_grp], references: [id_grp])
+  id_grp           String
+  avaliacoes_aluno Avaliacao[] @relation("Avaliação do Aluno")
+  created_at       DateTime    @default(now())
+  updated_at       DateTime    @default(now())
+}
+
+model Professor {
+  id_prof         String      @id @default(uuid())
+  nome_prof       String
+  email_prof      String      @unique
+  avaliacoes_prof Avaliacao[] @relation("Avaliação do Professor")
+  created_at      DateTime    @default(now())
+  updated_at      DateTime    @default(now())
+}
+
+model Grupo {
+  id_grp     String    @id @default(uuid())
+  nome_grp   String
+  lider      Aluno     @relation("Liderança", fields: [id_lider], references: [id_aluno])
+  id_lider   String    @unique
+  alunos     Aluno[]   @relation("Membros")
+  estande    Estande   @relation("Estande", fields: [id_estande], references: [id_estande])
+  id_estande String
+  nota_grp   Avaliacao @relation("Nota do Grupo", fields: [id_nota], references: [id_avaliacao])
+  id_nota    String
+  created_at DateTime  @default(now())
+  updated_at DateTime  @default(now())
+}
+
+model Estande {
+  id_estande     String   @id @default(uuid())
+  numero_estande Int
+  grupos         Grupo[]  @relation("Estande")
+  created_at     DateTime @default(now())
+  updated_at     DateTime @default(now())
+}
+
+model Avaliacao {
+  id_avaliacao String     @id @default(uuid())
+  professor    Professor? @relation("Avaliação do Professor", fields: [id_prof], references: [id_prof])
+  id_prof      String
+  aluno        Aluno?     @relation("Avaliação do Aluno", fields: [id_aluno], references: [id_aluno])
+  id_aluno     String
+  nota         Criterios  @relation("Nota", fields: [id_nota], references: [id_crit])
+  id_nota      String
+  Grupo        Grupo[]    @relation("Nota do Grupo")
+  horario      DateTime
+  created_at   DateTime   @default(now())
+  updated_at   DateTime   @default(now())
+}
+
+model Criterios {
+  id_crit      String      @id @default(uuid())
+  inovacao     Float
+  maturidade   Float
+  atratividade Float
+  apresentacao Float
+  nota         Avaliacao[] @relation("Nota")
+  created_at   DateTime    @default(now())
+  updated_at   DateTime    @default(now())
+}
